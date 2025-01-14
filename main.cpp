@@ -10,16 +10,51 @@
 #include <windows.h>
 #include <algorithm>
 using namespace std;
-struct location{
-  int x;
-  int y;
+struct location
+{
+    int x;
+    int y;
+};
+struct player
+{
+    location pos;
+    int moves;
+    int bombBlastRadius;
+
+};
+struct Enemy
+{
+    location pos;
 };
 
-struct Enemy{
-  location pos;
+struct Bomb
+{
+    location pos;
+    int timer;
+};
+struct Block
+{
+    location pos;
+    bool destructible;
 };
 
-struct Bomb{
-  location pos;
-  int timer;
-};
+int gameWidth=11;
+int gameHeight=11;
+int gameDifficulty=1;
+vector <Bomb> bombs;
+vector <Enemy> enemies;
+vector <Block> blocks;
+Player player;
+time_t startTime;
+double gameDuration;
+bool isGameRunning = false;
+int score;
+string playerName;
+
+double weightTime = 1;
+double weightMoves = 1;
+double weightBombs = 1;
+vector<ScoreEntry> scores;
+
+void gotoxy(int x, int y) {
+
